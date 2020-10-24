@@ -2,9 +2,9 @@
 
     include_once './db.php';	
     include_once './user.php';
-   $full_name = $_POST['fullname'];
+   $full_name = $_POST['name'];
    $email = $_POST['email'];
-   $city = $_POST['address'];
+   $city = $_POST['city'];
    $password = $_POST['password'];
 
    $con = new DBConnector();
