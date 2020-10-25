@@ -40,11 +40,11 @@ if (isset($_POST['login'])) {
     $user->setPassword($userPass);
     $user_details = $user->login($pdo);
     
-    $_SESSION['user_id'] = $user_details['user_id'];
-    $_SESSION['user_name'] = $user_details['user_full_name'];
-    $_SESSION['user_email'] = $user_details['user_email'];
-    $_SESSION['city'] = $user_details['city_of_residence'];
-    $_SESSION['photo'] = $user_details['profile_photo'];
+    $_SESSION['sUserID'] = $user_details['UserID'];
+    $_SESSION['sName'] = $user_details['Name'];
+    $_SESSION['sEmail'] = $user_details['Email'];
+    $_SESSION['sCity'] = $user_details['City'];
+    $_SESSION['sProfilePic'] = $user_details['ProfilePic'];
 
     header("Location: index.php");
 }
@@ -61,7 +61,7 @@ if (isset($_POST['change-pass'])) {
 
         $message = $user->changePassword($pdo);
         echo $message;
-        // header("Location: /Simple-UI/templates/index.php");
+        header("Location: index.php");
     }else {
         echo "Passwords don't match";
     }

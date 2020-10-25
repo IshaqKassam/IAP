@@ -116,7 +116,7 @@
         public function changePassword($pdo) {
             try {
                 $stmt = $pdo->prepare("UPDATE registrationdetails SET user_password = ? WHERE UserID = ? AND user_password = ?");
-                $stmt->execute([$this->newPass, $_SESSION['user_id'], $this->password]);
+                $stmt->execute([$this->newPass, $_SESSION['sUserID'], $this->password]);
                 $result = $stmt->fetch();
                 $stmt = null;
                 return "User Password has been changed";
