@@ -4,7 +4,7 @@
 	<title>Login</title>
 	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="login.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 <div class="sign_up_form">
@@ -24,7 +24,7 @@
 
 		<input id="btn1" type="submit" class="Register" name="login" value="Login" >
 		<hr>
-		<p><a href="register.php">Log In</a></p>
+		<p id="btn1" class="Register"><a href="register.php" style="text-decoration: none;">Register</a></p>
 
 		
 	</form>
