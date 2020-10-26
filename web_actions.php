@@ -22,12 +22,13 @@ if (isset($_POST["register"])){
     $user = new User();
     $user->setFullName($userName);
     $user->setEmail($userEmail);
-    $user->setPassword($userPass);
+    $user->setinputPass($userPass);
     $user->setCity($userCity);
     $user->setImage($userPhoto);
 
     $message = $user->register($pdo);
     echo $message;
+    
     header("Location: login.php");
 }
 
@@ -37,15 +38,16 @@ if (isset($_POST['login'])) {
 
     $user = new User();
     $user->setEmail($userEmail);
-    $user->setPassword($userPass);
+    $user->setinputPass($userPass);
     $user_details = $user->login($pdo);
     
-    $_SESSION['sUserID'] = $user_details['UserID'];
-    $_SESSION['sName'] = $user_details['Name'];
-    $_SESSION['sEmail'] = $user_details['Email'];
-    $_SESSION['sCity'] = $user_details['City'];
-    $_SESSION['sProfilePic'] = $user_details['ProfilePic'];
-
+    $_SESSION['user_id'] = $user_details['UserID'];
+    $_SESSION['user_name'] = $user_details['name_user'];
+    $_SESSION['user_email'] = $user_details['Email'];
+    $_SESSION['residence'] = $user_details['City'];
+    $_SESSION['user_image'] = $user_details['ProfilePic'];
+   // echo $user->getinputPass();
+   //echo $_SESSION['user_name'];
     header("Location: index.php");
 }
 

@@ -17,7 +17,13 @@
         //private $profileUrl;
         
 
-        public function __construct(){       
+        public function __construct(){ 
+            $this->fullName = "";
+            $this->email = "";  
+            $this->password = "";  
+            $this->inputPass = "";  
+            $this->city = "";  
+            $this->newpass = "";        
         }
 
         //getters and setter
@@ -37,12 +43,12 @@
             return $this->email;
         }
 
-        public function setPassword($pass){
-            $this->password = $pass;
+        public function setinputPass($pass){
+            $this->inputPass = $pass;
         }
 
-        public function getPassword(){
-            return $this->password;
+        public function getinputPass(){
+            return $this->inputPass;
         }
 
         public function setCity($city){
@@ -70,9 +76,7 @@
         }
        
         public function register ($pdo) {
-            //has the password
-           // $hashedPassword = password_hash($this->getPassword(), PASSWORD_DEFAULT);
-            //prepare a statement
+            
             $file_name = $this->image['name'];
             $file_tmp_location = $this->image['tmp_name'];
             $file_path = "images/";
@@ -81,8 +85,8 @@
 
             try{
                 //prepare a querry
-                $stm = $pdo->prepare("insert into registrationdetails (Name, Email, City, user_password, ProfilePic ) values(?,?,?,?,?)");
-                $stm->execute([$this->fullname,$this->email,$this->city,$this->password,$file_name]);
+                $stm = $pdo->prepare("INSERT INTO registrationdetails (name_user, Email, City, user_password, ProfilePic ) VALUES(?,?,?,?,?)");
+                $stm->execute([$this->fullName,$this->email,$this->city,$this->inputPass,$file_name]);
                 $stm = null;
                 return "Registration was successful";
             }catch (PDOException $ex){
@@ -98,7 +102,10 @@
                 $stmt->execute([$this->email]);
                 $result = $stmt->fetch();
                 $this->password = $result['user_password'];
+                //echo $this->password."<br>";
+                    //echo $this->inputPass;
                 if (password_verify($this->inputPass, $this->password)) {
+                    
                     $stmt = $pdo->prepare("SELECT * FROM registrationdetails WHERE Email = ? AND user_password = ?");
                     $stmt->execute([$this->email, $this->password]);
                     $result = $stmt->fetch();
@@ -116,7 +123,7 @@
         public function changePassword($pdo) {
             try {
                 $stmt = $pdo->prepare("UPDATE registrationdetails SET user_password = ? WHERE UserID = ? AND user_password = ?");
-                $stmt->execute([$this->newPass, $_SESSION['sUserID'], $this->password]);
+                $stmt->execute([$this->newPass, $_SESSION['user_id'], $this->password]);
                 $result = $stmt->fetch();
                 $stmt = null;
                 return "User Password has been changed";
