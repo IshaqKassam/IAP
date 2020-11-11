@@ -1,5 +1,9 @@
 <?php
     session_start();
+    if(!(isset($_SESSION['user_email']) && $_SESSION['user_email']!="")){
+        header("location:login.php");
+    }
+    // header("location: register.php")
 ?>
 
 <!DOCTYPE html>

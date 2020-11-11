@@ -51,21 +51,21 @@ if (isset($_POST['login'])) {
     header("Location: index.php");
 }
 
-if (isset($_POST['change-pass'])) {
-    $userPass = password_hash($_POST["current-password"], PASSWORD_DEFAULT);
-    $newPass = password_hash($_POST["new-password"], PASSWORD_DEFAULT);
-    $confirmPass = $_POST['confirm-password'];
+// if (isset($_POST['change-pass'])) {
+//     $userPass = password_hash($_POST["current-password"], PASSWORD_DEFAULT);
+//     $newPass = password_hash($_POST["new-password"], PASSWORD_DEFAULT);
+//     $confirmPass = $_POST['confirm-password'];
 
-    if(password_verify($confirmPass, $newPass)){
-        $user = new User();
-        $user->setPassword($userPass);
-        $user->setNewPass($newPass);
+//     if(password_verify($confirmPass, $newPass)){
+//         $user = new User();
+//         $user->setPassword($userPass);
+//         $user->setNewPass($newPass);
 
-        $message = $user->changePassword($pdo);
-        echo $message;
-        header("Location: index.php");
-    }else {
-        echo "Passwords don't match";
-    }
-}
+//         $message = $user->changePassword($pdo);
+//         echo $message;
+//         header("Location: index.php");
+//     }else {
+//         echo "Passwords don't match";
+//     }
+
 ?>

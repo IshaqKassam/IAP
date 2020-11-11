@@ -12,7 +12,7 @@ $pdo = $con->connectToDB();
 
 $user = new User();
 $user->logout($pdo);
-header("Location:register.php")
+header("Location:login.php")
 
 
 
